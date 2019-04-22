@@ -4,7 +4,7 @@
     "pages/welcome/welcome"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#b3d4db"
+    "navigationBarBackgroundColor": "#000000"
   },
   "sitemapLocation": "sitemap.json"
 }

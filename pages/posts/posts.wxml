@@ -2,6 +2,6 @@
   <swiper-item>
     <image src='/images/wx.png' style='width:100%'/>
   </swiper-item>
-  <swiper-item>2</swiper-item>
+  <swiper-item>轮播2</swiper-item>
   <swiper-item>3</swiper-item>
 </swiper>
