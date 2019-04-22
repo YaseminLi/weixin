@@ -1,0 +1,7 @@
+<swiper style="width:100%;height:1000rpx">
+  <swiper-item>
+    <image src='/images/wx.png' style='width:100%'/>
+  </swiper-item>
+  <swiper-item>2</swiper-item>
+  <swiper-item>3</swiper-item>
+</swiper>
