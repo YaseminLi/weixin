@@ -1,0 +1,21 @@
+<!--pages/posts/post-details/post-details.wxml-->
+<view class='container'>
+  <image src='/images/post/crab.png' class='head-image'></image>
+  <image src='/images/music/music-start.png' class='audio'></image>
+  <view class='author-date'>
+    <image src='/images/avatar/1.png' class='avatar'></image>
+    <text class='author'>林白衣</text>
+    <text class='const-text'>发表于</text>
+    <text class='date'>24小时前</text>
+  </view>
+  <text class='title'>又是蟹肥虾壮时</text>
+  <view class='tool'>
+    <view class='circle-img'>
+    <image src=' /images/icon/collection.png'></image>
+     <image src='/images/icon/share.png' class='share-img'></image>
+    </view>
+    <view class='horizon'></view>
+  </view>
+  <text class='detail'>这两天闲来无事，也安装了 “微信折叠”的开发工具来玩一下。以下是一些小道消息及使用体验，过两天我会写一篇文章以开发者的角度来详细评价微信小程序:微信小程序不能开发游戏类、直播类功能，小程序每个人关注的上限是20个（还不确定，不过我相信这是真的，这次公布的API里并没有视频
+  </text>
+</view>
