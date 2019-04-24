@@ -52,7 +52,7 @@ Page({
         that.setData({
           isPlaying: true
         });
-        app.globalData.g_isPlayingMusic = true;
+        app.globalData.g_isPlayingMusic = 'true';
         app.globalData.g_currentMusicPostId= that.data.postData.postId;
 
       }
