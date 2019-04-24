@@ -14,13 +14,13 @@ Page({
   * 生命周期函数--监听页面隐藏
   */
   onHide: function () {
-    console.log('welcome hide')
+    // console.log('welcome hide')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log('welcome unload')
+    // console.log('welcome unload')
   },
 })
