@@ -11,7 +11,7 @@ Page({
     });
     var postData = postsData.postList[postId];
     this.setData({
-      postData: postData
+      postData: postData,
     });
     var postsCollected = wx.getStorageSync('postsCollected');
     if (postsCollected) {
@@ -46,6 +46,19 @@ Page({
       });
     }
     this.setMusicMonitor();
+    //阅读数变化
+    var postsReading = wx.getStorageSync('postsReading');
+    if (postsReading ){
+      if(postsReading[postId]){
+        postsReading[postId]++;
+      }else{
+        postsReading[postId] = this.data.postData.reading+1;
+      }
+    }else{
+      postsReading={};
+      postsReading[postId] = Number(this.data.postData.reading) + 1;
+    }
+    wx.setStorageSync('postsReading', postsReading)
   },
   //监听音乐的播放与暂停
   setMusicMonitor: function() {
@@ -53,9 +66,6 @@ Page({
     var that = this;
     backgroundAudioManager.onPlay(
       function() {
-        console.log(app);
-        console.log(app.globalData.g_currentMusicPostId);
-        console.log(that.data.currentPostId);
         if (app.globalData.g_currentMusicPostId == that.data.currentPostId) {
           // 播放当前页面音乐才改变图标
           that.setData({

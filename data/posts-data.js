@@ -87,7 +87,7 @@ var local_database = [{
   headImgSrc: "/images/post/vr.png",
   author: "深白色",
   date: "Nov 20 2016",
-  avatar: "../../images/avatar/5.png",
+  avatar: "/images/avatar/5.png",
   postId: 4,
   music: {
     url: "http://music.163.com/song/media/outer/url?id=188204.mp3",
@@ -106,7 +106,7 @@ var local_database = [{
   headImgSrc: "/images/iqiyi.png",
   author: "深白色",
   date: "Nov 20 2016",
-  avatar: "../../images/avatar/5.png",
+  avatar: "/images/avatar/5.png",
   postId: 5,
   music: {
     url: "http://music.163.com/song/media/outer/url?id=27538254.mp3",
