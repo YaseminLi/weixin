@@ -1,16 +1,13 @@
-// pages/posts/post-details/post-details.js
 var postsData = require('../../../data/posts-data.js');
-var app = getApp();
+var app = getApp();//获取app.js上定义的全局变量
 Page({
   data: {
-    isPlaying: false,
+    isPlayingMusic: false,
   },
   onLoad: function(option) {
     var postId = option.id;
-    console.log(app);
-    console.log(postId);
     this.setData({
-      currentId: postId
+      currentPostId: postId
     });
     var postData = postsData.postList[postId];
     this.setData({
@@ -36,9 +33,16 @@ Page({
       postsCollected[postId] = false;
       wx.setStorageSync('postsCollected', postsCollected)
     };
-    if (app.globalData.g_isPlayingMusic && (app.globalData.g_currentMusicPostId===postId)) {
+    //全局变量记录音乐播放状态
+    // if (app.globalData.g_isPlayingMusic && (app.globalData.g_currentMusicPostId===postId)) {
+    //   this.setData({
+    //     isPlayingMusic: true,
+    //   });
+    // }
+    //利用缓存记录音乐播放状态
+    if (wx.getStorageSync('isPlayingMusic') && (app.globalData.g_currentMusicPostId == postId)) {
       this.setData({
-        isPlaying: true,
+        isPlayingMusic: true,
       });
     }
     this.setMusicMonitor();
@@ -49,21 +53,25 @@ Page({
     var that = this;
     backgroundAudioManager.onPlay(
       function() {
-        that.setData({
-          isPlaying: true
-        });
-        app.globalData.g_isPlayingMusic = 'true';
-        app.globalData.g_currentMusicPostId= that.data.postData.postId;
-
+        console.log(app);
+        console.log(app.globalData.g_currentMusicPostId);
+        console.log(that.data.currentPostId);
+        if (app.globalData.g_currentMusicPostId == that.data.currentPostId) {
+          // 播放当前页面音乐才改变图标
+          that.setData({
+            isPlayingMusic: true
+          })
+        }
+        wx.setStorageSync('isPlayingMusic', true);
       }
     )
     backgroundAudioManager.onPause(
       function() {
         that.setData({
-          isPlaying: false
+          isPlayingMusic: false
         });
-        app.globalData.g_isPlayingMusic = false;
-        app.globalData.g_currentMusicPostId = "";
+        // app.globalData.g_isPlayingMusic = false;
+        wx.setStorageSync('isPlayingMusic', false);
       }
     )
   },
@@ -71,23 +79,23 @@ Page({
     // this.getPostsCollected();
     this.getPostsCollectedSync();
   },
-  //同步调用方法,会阻塞get后的UI
-  getPostsCollectedSync: function() {
+    //同步调用方法,会阻塞get后的UI
+    getPostsCollectedSync: function() {
     var postsCollected = wx.getStorageSync('postsCollected');
     //收藏的变成未收藏，未收藏变成收藏的
-    postsCollected[this.data.currentId] = !postsCollected[this.data.currentId];
+    postsCollected[this.data.currentPostId] = !postsCollected[this.data.currentPostId];
     this.showToast(postsCollected);
     // this.showModal(postsCollected);
   },
   //异步调用方法，方法先走完
-  getPostsCollected: function() {
+    getPostsCollected: function() {
     var that = this;
     wx.getStorage({
       key: 'postsCollected',
       success: function(res) {
         var postsCollected = res.data;
         //收藏的变成未收藏，未收藏变成收藏的
-        postsCollected[that.data.currentId] = !postsCollected[that.data.currentId];
+        postsCollected[that.data.currentPostId] = !postsCollected[that.data.currentPostId];
         that.showToast(postsCollected);
         // this.showModal(postsCollected);
       },
@@ -98,10 +106,10 @@ Page({
     wx.setStorageSync('postsCollected', postsCollected);
     //更新页面状态
     this.setData({
-      collected: postsCollected[this.data.currentId]
+      collected: postsCollected[this.data.currentPostId]
     });
     wx.showToast({
-      title: postsCollected[this.data.currentId] ? "收藏成功" : "取消成功",
+      title: postsCollected[this.data.currentPostId] ? "收藏成功" : "取消成功",
       duration: 1500,
       icon: 'success'
     });
@@ -110,7 +118,7 @@ Page({
   //   var that = this;
   //   wx.showModal({
   //     title: '收藏',
-  //     content: postsCollected[this.data.currentId] ? '收藏此文章？' : "取消收藏此文章？",
+  //     content: postsCollected[this.data.currentPostId] ? '收藏此文章？' : "取消收藏此文章？",
   //     showCancel: true,
   //     cancelText: '取消',
   //     confirmText: '确认',
@@ -119,7 +127,7 @@ Page({
   //         wx.setStorageSync('postsCollected', postsCollected);
   //         //更新页面状态
   //         that.setData({
-  //           collected: postsCollected[that.data.currentId]
+  //           collected: postsCollected[that.data.currentPostId]
   //         });
   //       }
   //     }
@@ -139,28 +147,27 @@ Page({
     })
   },
   onMusic: function(event) {
-    var isPlaying = this.data.isPlaying;
-    isPlaying = !isPlaying;
-    this.setData({
-      isPlaying: isPlaying
-    });
+    var isPlayingMusic = this.data.isPlayingMusic;
     var postData = this.data.postData;
+    var currentPostId = this.data.currentPostId;
     const backgroundAudioManager = wx.getBackgroundAudioManager();
-    backgroundAudioManager.title = postData.music.title;
-    backgroundAudioManager.coverImgUrl = postData.music.coverImg;
-    if (isPlaying) {
-      backgroundAudioManager.src = postData.music.url;
-    } else {
+    if (isPlayingMusic) {
       backgroundAudioManager.pause();
-      // app.globalData.g_coverMusicImgUrl ='';
-    };
-
-    // if(played){
-    //   wx.playBackgroundAudio({
-    //     dataUrl: postData.music.url,
-    //     title: postData.music.title,
-    //     coverImgUrl: postData.music.coverImg
-    //   })
+      this.setData({
+        isPlayingMusic: false
+      });
+      wx.setStorageSync('isPlayingMusic', false)
+    } else {
+      backgroundAudioManager.title = postData.music.title;
+      backgroundAudioManager.coverImgUrl = postData.music.coverImg;
+      backgroundAudioManager.src = postData.music.url;
+      this.setData({
+        isPlayingMusic: true
+      });
+      wx.setStorageSync('isPlayingMusic', false);
+      app.globalData.g_currentMusicPostId = this.data.currentPostId;
+      console.log(app.globalData.g_currentMusicPostId)
+    }
   }
 
 })

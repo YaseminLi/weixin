@@ -1,7 +1,7 @@
 <!--pages/posts/post-details/post-details.wxml-->
 <view class='container'>
-  <image src="{{isPlaying?postData.music.coverImg:postData.headImgSrc}}" class='head-image'></image>
-  <image src="{{isPlaying?'/images/music/music-stop.png':'/images/music/music-start.png'}}" class='audio' catchtap='onMusic'></image>
+  <image src="{{isPlayingMusic?postData.music.coverImg:postData.headImgSrc}}" class='head-image'></image>
+  <image src="{{isPlayingMusic?'/images/music/music-stop.png':'/images/music/music-start.png'}}" class='audio' catchtap='onMusic'></image>
   <view class='author-date'>
     <image src='{{postData.avatar}}' class='avatar'></image>
     <text class='author'>{{postData.author}}</text>
