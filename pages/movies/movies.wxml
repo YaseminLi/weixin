@@ -1,7 +1,7 @@
 <import src='movie-list/movie-list-template.wxml'/>
 <view class='container'>
 <input placeholder='釜山行、复仇者联盟'/>
-<template  is='movieListTemplate'/>
+<template  is='movieListTemplate' data='{{movies}}'/>
 <template  is='movieListTemplate'/>
 <template  is='movieListTemplate'/>
 </view>
