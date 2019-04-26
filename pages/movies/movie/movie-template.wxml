@@ -1,0 +1,9 @@
+<import src='../stars/stars-template.wxml' />
+<template name='movieTemplate'>
+  <view class='movie-container'>
+    <image class='movie-img' src='https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2551353482.webp'></image>
+    <text class='movie-title'>反贪风暴4</text>
+    <template is='starsTemplate' />
+  </view>
+
+</template>
