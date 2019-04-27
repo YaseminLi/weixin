@@ -1,16 +1,21 @@
 var app = getApp();
 Page({
+  data:{
+    inTheaters:{},
+    comingSoon:{},
+    top250:{}
+  },
   onLoad: function(options) {
     var inTheatersUrl = app.globalData.doubanbase + '/v2/movie/in_theaters' + '?start=0&count=3';
     var comingSoonUrl = app.globalData.doubanbase + '/v2/movie/coming_soon' + '?start=0&count=3';
     var top250Url = app.globalData.doubanbase + '/v2/movie/top250' + '?start=0&count=3';
     //是异步调用的
-    this.getMovieListData(inTheatersUrl);
-    // this.getMovieListData(comingSoonUrl);
-    // this.getMovieListData(top250Url);
+    this.getMovieListData(inTheatersUrl,'inTheaters');
+    this.getMovieListData(comingSoonUrl,'comingSoon');
+    this.getMovieListData(top250Url,'top250');
   },
 
-  getMovieListData: function(url) {
+  getMovieListData: function(url,selectkey) {
     var that = this;
     wx.request({
       url: url,
@@ -19,15 +24,14 @@ Page({
         "content-type": "application/json"
       },
       success: function(res) {
-        // console.log(res);
-        that.processDoubanData(res.data)
+        that.processDoubanData(res.data,selectkey)
       },
       fail: function(error) {
         console.log(error)
       }
     })
   },
-  processDoubanData: function(moviesDouban) {
+  processDoubanData: function(moviesDouban,selectkey) {
     var movies = [];
     var subjects = moviesDouban.subjects;
     for (var idx in subjects) {
@@ -43,10 +47,11 @@ Page({
       }
       movies.push(temp);
     }
-    this.setData({
-      movies: movies
-    })
-    console.log(this.data.movies)
+    var readyMovie={};
+    readyMovie[selectkey]={
+      movies:movies
+    };
+    this.setData(readyMovie);
   }
 
 })

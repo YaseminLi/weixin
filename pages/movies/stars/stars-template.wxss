@@ -12,6 +12,6 @@
   line-height: 24rpx;
   margin-left: 20rpx;
   font-size: 24rpx;
-  color:#1f3463;
+  /* color:#1f3463; */
   /* font-weight:bold; */
 }
