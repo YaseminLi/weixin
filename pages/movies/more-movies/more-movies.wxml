@@ -1,0 +1,4 @@
+<import src='../movie-grid/movie-grid' />
+<view class='moreMoviwContainer'>
+      <template is='movieGrid' data='{{categoryMovie}}' />
+</view>

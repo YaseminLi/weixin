@@ -1,10 +1,18 @@
-<template name='starsTemplate' >
+<template name='starsTemplate'>
   <view class='stars-container'>
+    <block wx:for='{{rating.stars}}'  wx:item='item' wx:key='{{index}}'>
+      <image src="{{item==1?'/images/icon/star.png':'/images/icon/none-star.png'}}" />
+    </block>
+    <!-- 多层if-else
+    <image wx:if='{{i=1}}' />
+    <image wx:elif='{{i=2}}' />
+    <image wx:elif='{{i=3}}' />
+    <image wx:else='{{i=3}}' /> -->
+    <!-- <image src='/images/icon/none-star.png' />
     <image src='/images/icon/none-star.png' />
     <image src='/images/icon/none-star.png' />
     <image src='/images/icon/none-star.png' />
-    <image src='/images/icon/none-star.png' />
-    <image src='/images/icon/none-star.png' />
-    <text class='stars-score'>{{average}}</text>
+    <image src='/images/icon/none-star.png' /> -->
+    <text class='stars-score'>{{rating.average}}</text>
   </view>
 </template>

@@ -3,7 +3,9 @@
   <view class='movie-container'>
     <image class='movie-img' src='{{coverageUrl}}'></image>
     <text class='movie-title'>{{title}}</text>
-    <template is='starsTemplate' data='{{average}}'/>
+    <template is='starsTemplate' data='{{rating}}'/>
+    <!-- 如果传入两个数据，需进行封装
+    <template is='starsTemplate' data='{{data1:rating,data2:title}}'/> -->
   </view>
 
 </template>
