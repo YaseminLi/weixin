@@ -78,7 +78,7 @@ Page({
     } 
     this.setData({categoryMovie:movies});
   },
-  //涉及到UI的渲染要放在onReady里
+  //涉及到UI的渲染要放在onReady里面
   onReady:function(){
     wx.setNavigationBarTitle({
       title:this.data.category,
