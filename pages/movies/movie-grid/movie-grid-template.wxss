@@ -1,6 +1,7 @@
 @import '../movie/movie-template.wxss';
 .grid-container{
   margin: 40rpx 0 40rpx 15rpx;
+  height: 1300rpx
 }
 .single-view-container{
   margin-bottom:40rpx;

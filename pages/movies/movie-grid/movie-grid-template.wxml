@@ -1,13 +1,15 @@
 <import src='../movie/movie-template' />
 <template name='movieGridTemplate'>
   <view class='grid-container'>
-    <scroll-view
-    bindscrolltolower='{{true}}'>
-      <block wx:for='{{categoryMovie}}' wx:for-item='movie' wx:key='{{index}}'>
-        <view class='single-view-container'>
-          <template is='movieTemplate' data='{{...movie}}' />
-        </view>
-      </block>
-    </scroll-view>
+    <!-- <scroll-view class='grid-container'
+    scroll-y='{{true}}'
+    bindscrolltolower='onScrollLower'
+    > -->
+    <block wx:for='{{categoryMovie}}' wx:for-item='movie' wx:key='{{index}}'>
+      <view class='single-view-container'>
+        <template is='movieTemplate' data='{{...movie}}' />
+      </view>
+    </block>
+    <!-- </scroll-view> -->
   </view>
 </template>

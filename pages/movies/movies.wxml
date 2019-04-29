@@ -1,6 +1,12 @@
 <import src='movie-list/movie-list-template.wxml'/>
 <view class='container'>
-<input placeholder='釜山行、复仇者联盟'/>
+<view class='search'>
+<icon type='search' size='16'/>
+<input 
+placeholder='釜山行、复仇者联盟'
+placeholder-class='placeholderStyle'
+type='text'/>
+</view>
 <template  is='movieListTemplate' data='{{...inTheaters}}'/>
 <template  is='movieListTemplate' data='{{...comingSoon}}'/>
 <template  is='movieListTemplate'data='{{...top250}}'/>

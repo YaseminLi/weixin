@@ -1,26 +1,33 @@
-var util=require('../../../utils/util.js');
+var util = require('../../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-   category:'',
-   categoryMovie:{}
+    category: '',
+    categoryMovie: [],
+    categoryUrl: '',
+    totalCount: 0,
   },
-  onLoad: function (options) {
-    var category=options.category;
-    this.setData({category:category});
-    var categoryUrl='';
-    switch (category){
+  onLoad: function(options) {
+    var category = options.category;
+    this.setData({
+      category: category
+    });
+    var categoryUrl = '';
+    switch (category) {
       case '正在热映':
         categoryUrl = app.globalData.doubanbase + '/v2/movie/in_theaters';
-      break;
+        break;
       case '即将上映':
         categoryUrl = app.globalData.doubanbase + '/v2/movie/coming_soon';
-      break;
+        break;
       case 'Top250':
         categoryUrl = app.globalData.doubanbase + '/v2/movie/top250';
-      break;
+        break;
     }
-    util.http(categoryUrl,this.processDoubanData)
+    this.setData({
+      categoryUrl: categoryUrl
+    });
+    util.http(categoryUrl, this.processDoubanData)
     // 还用if else……
     // if(category=='正在热映'){
     //   categoryUrl = app.globalData.doubanbase + '/v2/movie/in_theaters' + '?start=0&count=9';
@@ -51,9 +58,38 @@ Page({
   //     }
   //   })
   // },
+  //scroll标签中上拉加载更多
+  // onScrollLower: function(event) {
+  //   var categoryUrl = this.data.categoryUrl + '?start=' + this.data.totalCount + '&count=20';
+  //   this.setData({
+  //     totalCount: this.data.totalCount + 20
+  //   });
+  //   util.http(categoryUrl, this.processDoubanData);
+  //  wx.showNavigationBarLoading();
+  // },
+  onReachBottom: function(event) {
+    var categoryUrl = this.data.categoryUrl +
+      "?start=" + this.data.totalCount + "&count=20";
+    this.setData({
+      totalCount: this.data.totalCount + 20
+    });
+    util.http(categoryUrl, this.processDoubanData)
+    wx.showNavigationBarLoading()
+  },
+  //监听下拉刷新事件
+  onPullDownRefresh: function(event) {
+    this.setData({
+      categoryMovie: []
+    });
+    console.log('下拉刷新');
+    var categoryUrl = this.data.categoryUrl + '?start=0&count=20';
+    util.http(categoryUrl, this.processDoubanData);
+
+    wx.showNavigationBarLoading();
+  },
   //要实现上拉下拉加载更多，不用提取
-  processDoubanData: function (moviesDouban) {
-    var movies = [];
+  processDoubanData: function(moviesDouban) {
+    var movies = this.data.categoryMovie;
     var subjects = moviesDouban.subjects;
     for (var idx in subjects) {
       var title = subjects[idx].title;
@@ -75,13 +111,18 @@ Page({
         }
       }
       movies.push(temp);
-    } 
-    this.setData({categoryMovie:movies});
+    }
+    this.setData({
+      categoryMovie: movies
+    });
+    wx.stopPullDownRefresh();
+    wx.hideNavigationBarLoading();
   },
+
   //涉及到UI的渲染要放在onReady里面
-  onReady:function(){
+  onReady: function() {
     wx.setNavigationBarTitle({
-      title:this.data.category,
+      title: this.data.category,
     })
   }
 })

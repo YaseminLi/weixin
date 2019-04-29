@@ -84,6 +84,15 @@ Page({
         wx.setStorageSync('isPlayingMusic', false);
       }
     )
+    backgroundAudioManager.onEnded(
+      function () {
+        that.setData({
+          isPlayingMusic: false
+        });
+        // app.globalData.g_isPlayingMusic = false;
+        wx.setStorageSync('isPlayingMusic', false);
+      }
+    )
   },
   onCollection: function(event) {
     // this.getPostsCollected();
