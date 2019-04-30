@@ -1,13 +1,14 @@
-<import src='movie-list/movie-list-template.wxml'/>
-<view class='container'>
-<view class='search'>
-<icon type='search' size='16'/>
-<input 
-placeholder='釜山行、复仇者联盟'
-placeholder-class='placeholderStyle'
-type='text'/>
+<import src='movie-list/movie-list-template.wxml' />
+ <view class='search'>
+    <icon class='search-img' type='search' size='16' />
+    <input placeholder='釜山行、复仇者联盟' placeholder-class='placeholderStyle' type='text' bindfocus='onBindFocus' bindblur='onBindBlur' />
+  </view>
+<view class='container' wx:if='{{!isSearchMovie}}'>
+  <template is='movieListTemplate' data='{{...inTheaters}}' />
+  <template is='movieListTemplate' data='{{...comingSoon}}' />
+  <template is='movieListTemplate' data='{{...top250}}' />
 </view>
-<template  is='movieListTemplate' data='{{...inTheaters}}'/>
-<template  is='movieListTemplate' data='{{...comingSoon}}'/>
-<template  is='movieListTemplate'data='{{...top250}}'/>
-</view>
+<view class='search-panel' wx:if='{{isSearchMovie}}'>
+    <text>search movie</text>
+    <!-- <template id='movieGridTemplate' /> -->
+  </view>

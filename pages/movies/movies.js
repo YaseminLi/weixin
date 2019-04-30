@@ -4,6 +4,7 @@ Page({
     // inTheaters:{},
     // comingSoon:{},
     // top250:{}
+    isSearchMovie:false
   },
   onLoad: function(options) {
     var inTheatersUrl = app.globalData.doubanbase + '/v2/movie/in_theaters' + '?start=0&count=3';
@@ -14,7 +15,14 @@ Page({
     this.getMovieListData(comingSoonUrl, 'comingSoon','即将上映');
     this.getMovieListData(top250Url, 'top250','Top250');
   },
-
+  onBindFocus:function(event){
+    this.setData({isSearchMovie:true});
+    console.log('show');
+  },
+  onBindBlur: function (event) {
+    this.setData({ isSearchMovie: false});
+    console.log('hide');
+  },
   getMovieListData: function(url, selectkey,categoryTitle) {
     var that = this;
     wx.request({
