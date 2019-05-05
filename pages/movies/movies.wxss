@@ -1,4 +1,5 @@
 @import 'movie-list/movie-list-template.wxss';
+@import 'movie-grid/movie-grid-template.wxss';
 .container{
   background-color: #f2f2f2;
 }
@@ -8,6 +9,11 @@
   height: 80rpx;
 }
 .search-img{
+  margin: auto 0 auto 20rpx;
+}
+.cancel-img{
+  height: 30rpx;
+  width: 30rpx;
   margin: auto 0 auto 20rpx;
 }
 .search input{

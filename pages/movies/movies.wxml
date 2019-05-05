@@ -1,7 +1,9 @@
 <import src='movie-list/movie-list-template.wxml' />
+<import src='movie-grid/movie-grid-template.wxml' />
  <view class='search'>
     <icon class='search-img' type='search' size='16' />
     <input placeholder='釜山行、复仇者联盟' placeholder-class='placeholderStyle' type='text' bindfocus='onBindFocus' bindblur='onBindBlur' />
+    <image class='cancel-img' src='/images/icon/xx.png' catchtap='onCancleImgTap' wx:if='{{isSearchMovie}}'/>
   </view>
 <view class='container' wx:if='{{!isSearchMovie}}'>
   <template is='movieListTemplate' data='{{...inTheaters}}' />
@@ -9,6 +11,6 @@
   <template is='movieListTemplate' data='{{...top250}}' />
 </view>
 <view class='search-panel' wx:if='{{isSearchMovie}}'>
-    <text>search movie</text>
-    <!-- <template id='movieGridTemplate' /> -->
+<!-- <text>ajvbi;shbo</text> -->
+   <template is='movieGridTemplate' data='{{...searchResult}}' />
   </view>

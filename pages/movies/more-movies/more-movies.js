@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     category: '',
-    categoryMovie: [],
+    movies: [],
     categoryUrl: '',
     totalCount: 0,
   },
@@ -79,7 +79,7 @@ Page({
   //监听下拉刷新事件
   onPullDownRefresh: function(event) {
     this.setData({
-      categoryMovie: []
+      movies: []
     });
     console.log('下拉刷新');
     var categoryUrl = this.data.categoryUrl + '?start=0&count=20';
@@ -89,7 +89,7 @@ Page({
   },
   //要实现上拉下拉加载更多，不用提取
   processDoubanData: function(moviesDouban) {
-    var movies = this.data.categoryMovie;
+    var movies = this.data.movies;
     var subjects = moviesDouban.subjects;
     for (var idx in subjects) {
       var title = subjects[idx].title;
@@ -113,7 +113,7 @@ Page({
       movies.push(temp);
     }
     this.setData({
-      categoryMovie: movies
+      movies: movies
     });
     wx.stopPullDownRefresh();
     wx.hideNavigationBarLoading();

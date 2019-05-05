@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/movies/movie-detail/movie-detail",
     "pages/movies/movies",
     "pages/movies/more-movies/more-movies",
     "pages/posts/posts",
     "pages/posts/post-details/post-details",
-    "pages/welcome/welcome"
+   "pages/welcome/welcome"
   ],
  
   "window": {
