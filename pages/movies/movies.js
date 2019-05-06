@@ -1,10 +1,11 @@
+var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    inTheaters:{},
-    comingSoon:{},
-    top250:{},
-    searchResult:{},
+    inTheaters: {},
+    comingSoon: {},
+    top250: {},
+    searchResult: {},
     isSearchMovie: false
   },
   onLoad: function(options) {
@@ -19,7 +20,7 @@ Page({
   onCancleImgTap: function(event) {
     this.setData({
       isSearchMovie: false,
-      searchResult:{}
+      searchResult: {}
     });
   },
   onBindFocus: function(event) {
@@ -59,20 +60,13 @@ Page({
       if (title.length > 6) {
         title = title.substring(0, 6) + '...';
       }
-      var starsNum = subjects[idx].rating.stars.toString().substring(0, 1);
-      var stars = [];
-      for (var i = 0; i < 5; i++) {
-        stars[i] = (i < starsNum ? 1 : 0);
-      };
+      var stars = util.convertToStars(subjects[idx].rating.stars);
       var temp = {
         coverageUrl: subjects[idx].images.large,
         title: title,
         movieId: subjects[idx].id,
-        rating: {
-          average: subjects[idx].rating.average,
-          stars: stars
-        }
-
+        score: subjects[idx].rating.average,
+        stars: stars
       }
       movies.push(temp);
     }
@@ -86,6 +80,11 @@ Page({
   onMoreMovie: function(event) {
     wx.navigateTo({
       url: 'more-movies/more-movies?category=' + event.currentTarget.dataset.category,
+    })
+  },
+  onMovieDetail: function(event) {
+    wx.navigateTo({
+      url: 'movie-detail/movie-detail?id=' + event.currentTarget.dataset.id,
     })
   }
 

@@ -1,36 +1,49 @@
-<!-- <import src='../srats/stars-template.wxml'/> -->
-<view>
-  <view class='detail-top'>
-    <text class='title'>大话西游之大圣娶亲</text>
-    <text class='area'>香港·1995</text>
-    <view class='like-comment'>
-      <text class='number'>19575</text>
-      <text class='like'>人喜欢</text>
-      <text class='number'>75351</text>
-      <text class='like'>条评论</text>
-    </view>
-    <image src='/images/movie-detail.png' class='photo' />
-  </view>
-  <view class='info'>
-    <text class='title-1'>西游记大结局之仙履奇缘</text>
-    <view class='info-detail'>
-      <view>评分
-        <text class='info-detail-content'>9.1</text>
-      </view>
-      <view>导演
-        <text class='info-detail-content'>刘镇伟</text>
-      </view>
-      <view>影人
-        <text class='info-detail-content'>周星驰/吴孟达/朱茵蔡少芬</text>
-      </view>
-      <view>类型
-        <text class='info-detail-content'>动作、冒险、喜剧</text>
-      </view>
+<import src='../stars/stars-template.wxml' />
+<view class='container'>
+  <image class='head-img' src='{{movie.movieImg}}' data-src='{{movie.movieImg}}' catchtap='viewMoviePostImg' mode='aspectFill' />
+  <view class='head-img-hover'>
+    <text class='main-title'>{{movie.title}}</text>
+    <text class='sub-title'>{{movie.countries+'·'+movie.year}}</text>
+    <view class=' like '>
+      <text class='highlight-font '>{{movie.wishCount}}</text>
+      <text class='plain-font'>人喜欢</text>
+      <text class='highlight-font '>{{movie.commentsCount}}</text>
+      <text class='plain-font'>条评论</text>
     </view>
   </view>
-  <view class='description'>
-    <view class='description-title'>剧情简介</view>
-    <text class='description-content'>至尊宝（周星驰 饰）被月光宝盒带回到五百年前，遇见紫霞仙子（朱茵 饰），被对方打上烙印成为对方的人，并发觉自己已变成孙悟空。 
-　　紫霞与青霞（朱茵 饰）本是如来佛祖座前日月神灯的灯芯（白天是紫霞，晚上是青霞），二人虽然同一肉身却仇恨颇深，因此紫霞立下誓言，谁能拔出她手中的紫青宝剑，谁就是她的意中人。紫青宝剑被至尊宝于不经意间拔出，紫霞决定以身相许，却遭一心记挂白晶晶（莫文蔚 饰）的至尊宝拒绝。后牛魔王救下迷失在沙漠中的紫霞，并逼紫霞与他成婚，关键时刻，至尊宝现身。</text>
+  <image src='{{movie.movieImg}} ' class='movie-img' data-src='{{movie.movieImg}}' catchtap='viewMoviePostImg'/>
+  <view class='summary'>
+    <view class='original-title'>{{movie.originalTitle}}</view>
+    <view class="flex-row">
+      <text class="mark">评分</text>
+      <template is='starsTemplate' data='{{stars:movie.stars,score:movie.score}}' />
+    </view>
+    <view class="flex-row">
+      <text class="mark">导演</text>
+      <text>{{movie.director}}</text>
+    </view>
+    <view class="flex-row">
+      <text class="mark">影人</text>
+      <text>{{movie.casts}}</text>
+    </view>
+    <view class="flex-row">
+      <text class="mark">类型</text>
+      <text>{{movie.genres}}</text>
+    </view>
+  </view>
+  <view class='synopsis'>
+    <text class='synopsis-font'>剧情简介</text>
+    <text class='synopsis-content'>{{movie.summary}}</text>
+  </view>
+  <view class='cast'>
+    <text class='cast-font'>影人</text>
+    <scroll-view class='cast-imgs' scroll-x>
+      <block wx:for='{{movie.castsInfo}}' wx:for-item='item' wx:key='{{index}}'>
+        <view class='cast-container'>
+          <image class='cast-img' src='{{item.img}}' />
+          <text class='cast-name'>{{item.name}}</text>
+        </view>
+      </block>
+    </scroll-view>
   </view>
 </view>

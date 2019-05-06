@@ -1,9 +1,9 @@
 <import src='../stars/stars-template.wxml' />
 <template name='movieTemplate'>
-  <view class='movie-container'>
+  <view class='movie-container' data-id='{{movieId}}' catchtap='onMovieDetail'>
     <image class='movie-img' src='{{coverageUrl}}'></image>
     <text class='movie-title'>{{title}}</text>
-    <template is='starsTemplate' data='{{rating}}'/>
+    <template is='starsTemplate' data='{{stars:stars,score:score}}'/>
     <!-- 如果传入两个数据，需进行封装
     <template is='starsTemplate' data='{{data1:rating,data2:title}}'/> -->
   </view>

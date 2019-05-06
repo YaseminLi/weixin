@@ -5,8 +5,8 @@ Page({
     // wx:wx.navigateTo({
     //   url: '../posts/posts',
     // })
-    //跳转到其他页面，但不能返回，此页面unload
-    wx:wx.redirectTo({
+    //跳转到有tab标签的页面
+    wx.switchTab({
       url: '../posts/posts',
     })
   },

@@ -118,7 +118,12 @@ Page({
     wx.stopPullDownRefresh();
     wx.hideNavigationBarLoading();
   },
-
+  onMovieDetail: function (event) {
+    wx.navigateTo({
+      url: '../movie-detail/movie-detail?id=' + event.currentTarget.dataset.id,
+    })
+  },
+ 
   //涉及到UI的渲染要放在onReady里面
   onReady: function() {
     wx.setNavigationBarTitle({
