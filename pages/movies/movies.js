@@ -6,7 +6,8 @@ Page({
     comingSoon: {},
     top250: {},
     searchResult: {},
-    isSearchMovie: false
+    isSearchMovie: false,
+    inputValue:''
   },
   onLoad: function(options) {
     var inTheatersUrl = app.globalData.doubanbase + '/v2/movie/in_theaters' + '?start=0&count=3';
@@ -20,7 +21,8 @@ Page({
   onCancleImgTap: function(event) {
     this.setData({
       isSearchMovie: false,
-      searchResult: {}
+      searchResult: {},
+      inputValue:''
     });
   },
   onBindFocus: function(event) {
