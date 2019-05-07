@@ -61,6 +61,7 @@
   border-bottom: 1px solid rgb(219, 218, 218);
 }
 
+
 .original-title {
   margin-bottom: 40rpx;
   color: #1f3463;
@@ -79,7 +80,6 @@
   white-space: nowrap;
   color: #999;
 }
-
 .synopsis {
   padding: 40rpx 0 40rpx 40rpx;
   border-bottom: 1px solid  rgb(219, 218, 218);
