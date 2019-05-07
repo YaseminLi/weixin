@@ -1,0 +1,13 @@
+var format=function(text){
+  //初始化时text为空，无法读取到repalces属性
+  if(!text){
+    return
+  }
+  // 原始数据中为\\n,多出来的两个\起到转义作用
+  var reg = getRegExp("\\\\n", "img");
+  
+  return text.replace(reg, '\n');
+}
+module.exports={
+  format:format
+}

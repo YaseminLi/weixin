@@ -1,3 +1,4 @@
+<wxs src='../../../utils/filter.wxs' module='tools'/>
 <import src='../stars/stars-template.wxml' />
 <view class='container'>
   <image class='head-img' src='{{movie.movieImg}}' data-src='{{movie.movieImg}}' catchtap='viewMoviePostImg' mode='aspectFill' />
@@ -33,7 +34,7 @@
   </view>
   <view class='synopsis'>
     <text class='synopsis-font'>剧情简介</text>
-    <text class='synopsis-content'>{{movie.summary}}</text>
+    <text class='synopsis-content'>{{tools.format(movie.summary)}}</text>
   </view>
   <view class='cast'>
     <text class='cast-font'>影人</text>
