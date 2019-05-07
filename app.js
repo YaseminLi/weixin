@@ -4,7 +4,8 @@ globalData:{
   g_currentMusicPostId:null,
   doubanbase:'http://t.yushu.im'
 },
-onLaunch:function(){
-    wx.setStorageSync('isPlayingMusic', false)
+onLaunch:function(options){
+    wx.setStorageSync('isPlayingMusic', false);
+    // console.log(options);
   }
 })

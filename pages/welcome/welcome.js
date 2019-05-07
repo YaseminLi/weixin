@@ -1,5 +1,5 @@
 Page({
-  onTap:function(){
+  onTap: function () {
     // console.log('onTap')
     //跳转到其他页面，可以返回上一页面,此页面hide
     // wx:wx.navigateTo({

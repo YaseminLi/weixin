@@ -1,4 +1,6 @@
-var util = require('../../../utils/util.js');
+import {
+  Movie
+} from 'class/Movie.js'
 var app = getApp();
 Page({
   data: {
@@ -7,31 +9,23 @@ Page({
   onLoad: function(options) {
     var movieId = options.id;
     var detailUrl = app.globalData.doubanbase + '/v2/movie/subject/' + movieId;
-    util.http(detailUrl, this.processDoubanData)
+    var movie = new Movie(detailUrl);
+    //getMovieData里有异步方法，所以必须有回掉函数
+    // var that=this;
+    // movie.getMovieData(function(movie) {
+    //   that.setData({
+    //     movie: movie
+    //   });
+    // });
+    //箭头函数改写getMovieData中的this
+    //箭头函数中的this就是方法调用环境的this
+    movie.getMovieData((movie)=>{
+      this.setData({movie:movie})
+    });
   },
-  processDoubanData: function(data) {
-    var movie = {};
-    movie = {
-      title: data.title,
-      countries: data.countries[0],
-      year: data.year,
-      wishCount: data.wish_count,
-      commentsCount: data.comments_count,
-      movieImg: data.images ? data.images.large : '',
-      originalTitle: data.original_title,
-      stars: util.convertToStars(data.rating.stars),
-      score: data.rating.average,
-      director: data.directors ? data.directors[0].name : '',
-      casts: util.convertToCastString(data.casts),
-      genres: data.genres.join('、'),
-      summary: data.summary,
-      castsInfo: util.convertToCastInfos(data.casts),
-    }
-    this.setData({
-      movie: movie
-    })
-  },
-  viewMoviePostImg: function (event) {
+
+
+  viewMoviePostImg: function(event) {
     var src = event.currentTarget.dataset.src;
     wx.previewImage({
       urls: [src],
