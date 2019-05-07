@@ -96,6 +96,7 @@
   margin-right: 40rpx;
   line-height: 40rpx;
   letter-spacing: 1px;
+  text-indent: 2em;
 }
 
 .cast {

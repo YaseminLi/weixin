@@ -6,7 +6,7 @@ var format=function(text){
   // 原始数据中为\\n,多出来的两个\起到转义作用
   var reg = getRegExp("\\\\n", "img");
   
-  return text.replace(reg, '\n');
+  return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;');
 }
 module.exports={
   format:format

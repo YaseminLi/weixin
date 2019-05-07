@@ -34,7 +34,7 @@
   </view>
   <view class='synopsis'>
     <text class='synopsis-font'>剧情简介</text>
-    <text class='synopsis-content'>{{tools.format(movie.summary)}}</text>
+    <text class='synopsis-content' decode='true'>{{tools.format(movie.summary)}}</text>
   </view>
   <view class='cast'>
     <text class='cast-font'>影人</text>
