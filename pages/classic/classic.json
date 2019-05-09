@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "v-like":"/components/like/index"
+  },
+  "navigationBarTitleText": "林间有风",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

@@ -1,5 +1,5 @@
 page{
-  background-color: #b3d4db;
+  /* background-color: #b3d4db; */
   height: 100%
 }
 .container{
@@ -24,14 +24,14 @@ page{
 }
 .moto-container{
   margin-top:200rpx;
-  border: 1px solid black;
-  border-radius: 5px;
+  /* border: 1px solid red;
+  border-radius: 5px; */
   height: 80rpx;
-  width:200rpx;
+  /* width:200rpx; */
   text-align: center
 }
 .moto{
-  font-size:22rpx;
+  /* font-size:22rpx; */
   font-weight:bold;
-  line-height:80rpx
+  /* line-height:80rpx; */
 }

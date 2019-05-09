@@ -7,7 +7,7 @@ Page({
     // })
     //跳转到有tab标签的页面
     wx.switchTab({
-      url: '../posts/posts',
+      url: '../classic/classic',
     })
   },
   /**
